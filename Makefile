@@ -2,11 +2,14 @@
 
 openscad = $$(type openscad-nightly > /dev/null 2>&1 && echo "openscad-nightly" || echo "openscad")
 
-all: stl/base.stl
+objects=big single connector
 
 clean:
 	rm stl/* -Rf
 
-stl/base.stl:
-	$(openscad) -o stl/base.stl src/base.scad
+all: $(objects)
+
+$(objects):
+	$(openscad) -o stl/$@.stl src/$@.scad ;\
+
 
